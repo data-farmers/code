@@ -88,4 +88,4 @@ ax2.legend(title = "PCA")
 
 
 
-plt.savefig('../../data-farmers.github.io/img/sammon/sammonplot2.png')
+plt.show()
