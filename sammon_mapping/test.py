@@ -23,6 +23,8 @@ col3 = 'Compactness'
 
 # sammon(...) wants a Matrix
 X = df.as_matrix(columns = [col1, col2, col3])
+#X = df.iloc[:,:7].values
+
 
 # By default, sammon returns a 2-dim array and the error E
 [y, E] = sammon(X)
@@ -46,7 +48,7 @@ principalComponents = pca.fit_transform(X_p)
 markers = ['o','^','p']
 names = df['Name'].unique()
 
-fig = plt.figure(figsize = (16, 5))
+fig = plt.figure(figsize = (18, 6))
 
 
 
@@ -62,7 +64,8 @@ for i in range(3):
 ax0.set_xlabel(col1)
 ax0.set_ylabel(col2)
 ax0.set_zlabel(col3)
-ax0.legend(title = "Raw data")
+ax0.set_title("Raw data")
+ax0.legend()
 
 
 
@@ -73,7 +76,9 @@ for i in range(3):
     indx = df.loc[df['Name'] == names[i]].index
     ax1.scatter(y[indx, 0], y[indx, 1], marker = markers[i], label = names[i])
 
-ax1.legend(title = "Sammon mapping")
+
+ax1.set_title("Sammon mapping")
+ax1.legend()
 
 
 
@@ -85,8 +90,9 @@ for i in range(3):
     indx = df.loc[df['Name'] == names[i]].index
     ax2.scatter(principalComponents[indx, 0], principalComponents[indx, 1], marker = markers[i], label = names[i])
 
-ax2.legend(title = "PCA")
+ax2.set_title("PCA")
+ax2.legend()
 
 
 
-plt.show()
+plt.savefig('../../data-farmers.github.io/img/sammon/sammonplot2.png')
