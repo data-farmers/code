@@ -61,20 +61,21 @@ fig = plt.figure(figsize = (11, 5))
 ax0 = fig.add_subplot(121)
 for i in range(len(y_categorical)):
     indx = df.loc[df['Name'] == y_categorical[i]].index
-    ax0.scatter(scores[indx,0], scores[indx,1], marker = mks[i], label = classes[i])
+    ax0.scatter(scores[indx,0], scores[indx,1], marker = mks[i], label = y_categorical[i])
 
 ax0.set_xlabel('Scores on LV 1')
 ax0.set_ylabel('Scores on LV 2')
 ax0.set_title('PLS-DA')
-
+ax0.legend(loc = 'upper right')
 
 ax1 = fig.add_subplot(122)
 for i in range(len(y_categorical)):
     indx = df.loc[df['Name'] == y_categorical[i]].index
-    ax1.scatter(principalComponents[indx, 0], principalComponents[indx, 1], marker = mks[i], label = classes[i])
+    ax1.scatter(principalComponents[indx, 0], principalComponents[indx, 1], marker = mks[i], label = y_categorical[i])
 
 ax1.set_xlabel('Component 1')
 ax1.set_ylabel('Component 2')
 ax1.set_title('PCA')
+ax1.legend(loc = 'upper right')
 
 plt.savefig('../../data-farmers.github.io/img/pls-da/plot1.png')
